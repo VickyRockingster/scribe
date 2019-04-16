@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
 
@@ -33,7 +33,7 @@ class App extends Component {
     const { alerts, user } = this.state
 
     return (
-      <React.Fragment>
+      <Fragment>
         <Header user={user} />
         {alerts.map((alert, index) => (
           <Alert key={index} dismissible variant={alert.type}>
@@ -56,9 +56,21 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
         </main>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
+// <AuthenticatedRoute user={user} path='/entries-create' render={() => (
+//   <Entries user={user} />
+//   <EntryCreate user={user} />
+// )} />
+// <AuthenticatedRoute user={user} path='/entries/:id/edit' render={() => (
+//   <Entries user={user} />
+//   <EntryEdit user={user} />
+// )} />
+// <AuthenticatedRoute user={user} path='/entries/:id/show' render={() => (
+//   <Entries user={user} />
+//   <EntryShow user={user} />
+// )} />
 
 export default App
