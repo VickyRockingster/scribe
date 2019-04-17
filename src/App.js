@@ -9,6 +9,11 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 
+import EntriesIndex from './entries/EntriesIndex.js'
+import EntryShow from './entries/EntryShow.js'
+import EntryCreate from './entries/EntryCreate.js'
+import EntryEdit from './entries/EntryEdit.js'
+
 import Alert from 'react-bootstrap/Alert'
 
 class App extends Component {
@@ -55,22 +60,28 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+          <AuthenticatedRoute user={user} path='/entries-create' render={() => (
+            <Fragment>
+              <EntriesIndex user={user} />
+              <EntryCreate user={user} />
+            </Fragment>
+          )} />
+          <AuthenticatedRoute user={user} path='/entries/:id/show' render={() => (
+            <Fragment>
+              <EntriesIndex user={user} />
+              <EntryShow user={user} />
+            </Fragment>
+          )} />
+          <AuthenticatedRoute user={user} path='/entries/:id/edit' render={() => (
+            <Fragment>
+              <EntriesIndex user={user} />
+              <EntryEdit user={user} />
+            </Fragment>
+          )} />
         </main>
       </Fragment>
     )
   }
 }
-// <AuthenticatedRoute user={user} path='/entries-create' render={() => (
-//   <Entries user={user} />
-//   <EntryCreate user={user} />
-// )} />
-// <AuthenticatedRoute user={user} path='/entries/:id/edit' render={() => (
-//   <Entries user={user} />
-//   <EntryEdit user={user} />
-// )} />
-// <AuthenticatedRoute user={user} path='/entries/:id/show' render={() => (
-//   <Entries user={user} />
-//   <EntryShow user={user} />
-// )} />
 
 export default App
