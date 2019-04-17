@@ -3,28 +3,22 @@ import { withRouter } from 'react-router-dom'
 
 import axios from 'axios'
 import apiUrl from '../apiConfig'
-// import { Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 // import { Link } from 'react-router-dom'
 
 class EntryCreate extends Component {
   constructor () {
     super()
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleCreate = this.handleCreate.bind(this)
-
     this.state = {
-      entry: {
-        title: '',
-        text: ''
-      },
+      entry: null,
       created: false,
-      message: '',
-      redirectToShow: false
+      message: ''
     }
   }
 
-  handleCreate = () => {
+  handleSubmit = (event) => {
+    event.preventDefault()
+
     return axios({
       url: `${apiUrl}/entries`,
       method: 'POST',
@@ -36,10 +30,11 @@ class EntryCreate extends Component {
       .then(res => {
         console.log(res)
         this.setState({
-          redirectToShow: true,
-          created: true
+          created: true,
+          entry: res.data.entry
         })
       })
+      .then(() => (console.log(this.state.entry)))
       .catch(console.log)
   }
 
@@ -50,17 +45,19 @@ class EntryCreate extends Component {
   }
 
   render () {
-    // if (this.state.redirectToShow) {
-    // const id = this.props.match.params.id
-    //   return <Redirect to={{ pathname: `/entries/${id}/show` }} />
-    // }
+    if (this.state.created) {
+      const id = this.state.entry.id
+      return <Redirect to={{ pathname: `/entries/${id}/show` }} />
+    }
 
     return (
-      <main handleChange={this.handleChange} id="create-entry">
-        <h4>{this.state.entry.title}</h4>
-        <div>{this.state.entry.text}</div>
-        <button onClick={this.handleCreate}>Add</button>
-      </main>
+      <form onSubmit={this.handleSubmit} id="create-entry">
+        <input name="title" type="text" placeholder="Title" onChange={this.handleChange}
+          id="create-entry-title" required/>
+        <textarea name="text" type="text" placeholder="Text" onChange={this.handleChange}
+          id="create-entry-text" required></textarea>
+        <button type="submit" >Add</button>
+      </form>
     )
   }
 }
