@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-
+import ChangePasswordFormDialog from '../auth/components/ChangePasswordFormDialog'
 import './Header.scss'
 
-const authenticatedOptions = (
-  <Fragment>
-    <Link to="/change-password">Change Password</Link>
-    <Link to="/sign-out">Sign Out</Link>
-  </Fragment>
-)
+// const authenticatedOptions = (
+//   <Fragment>
+//     <FormDialog/>
+//     <Link to="/sign-out">Sign Out</Link>
+//   </Fragment>
+// )
 
 const unauthenticatedOptions = (
   <Fragment>
@@ -17,21 +17,22 @@ const unauthenticatedOptions = (
   </Fragment>
 )
 
-const alwaysOptions = (
-  <Fragment>
-    <Link to="/">Home</Link>
-  </Fragment>
-)
+// const alwaysOptions = (
+//   <Fragment>
+//     <Link to="/">Home</Link>
+//   </Fragment>
+// )
 
 const Header = ({ user }) => (
   <header className="main-header">
     <h1>Scribe</h1>
     <nav>
-      { user && <span>Welcome, {user.firstName}</span>}
-      { user ? authenticatedOptions : unauthenticatedOptions }
-      { alwaysOptions }
+      { user && <span>Welcome, {user.first_name}</span>}
+      { user ? (<ChangePasswordFormDialog user={user} />)
+        : unauthenticatedOptions }
     </nav>
   </header>
 )
 
 export default Header
+// { alwaysOptions }
