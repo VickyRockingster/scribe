@@ -51,7 +51,7 @@ export default class ChangePasswordFormDialog extends Component {
   render () {
     return (
       <div>
-        <Button variant="outlined" onClick={this.handleClickOpen}>
+        <Button size="large" variant="outlined" onClick={this.handleClickOpen}>
           Change Password
         </Button>
         <Dialog

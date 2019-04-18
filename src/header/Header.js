@@ -6,7 +6,8 @@ import Button from '@material-ui/core/Button'
 import './Header.scss'
 
 const authenticatedOptions = (
-  <Button variant="outlined"><Link to="/sign-out">Sign Out</Link></Button>
+  <Button size="medium" variant="outlined"><Link to="/sign-out">
+    Sign Out</Link></Button>
 )
 
 const unauthenticatedOptions = (
