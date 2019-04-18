@@ -8,6 +8,7 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
+import FormDialog from './auth/components/ChangePasswordFormDialogue'
 
 import EntriesIndex from './entries/EntriesIndex.js'
 import EntryShow from './entries/EntryShow.js'
@@ -58,7 +59,10 @@ class App extends Component {
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword alert={this.alert} user={user} />
+            <Fragment>
+              <ChangePassword alert={this.alert} user={user} />
+              <FormDialog />
+            </Fragment>
           )} />
           <AuthenticatedRoute user={user} path='/entries-create' render={() => (
             <Fragment>
