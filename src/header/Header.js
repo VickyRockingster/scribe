@@ -13,9 +13,9 @@ const authenticatedOptions = (
 const unauthenticatedOptions = (
   <Fragment>
     <Link to="/sign-up">Sign Up</Link>
-    <Link to="/sign-in">Sign In</Link>
   </Fragment>
 )
+// <Link to="/sign-in">Sign In</Link>
 
 // const alwaysOptions = (
 //   <Fragment>

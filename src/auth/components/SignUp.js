@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import { signUp, signIn } from '../api'
 import messages from '../messages'
+
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 class SignUp extends Component {
   constructor () {
@@ -30,7 +33,7 @@ class SignUp extends Component {
       .then(() => signIn(this.state))
       .then(res => setUser(res.data.user))
       .then(() => alert(messages.signUpSuccess, 'success'))
-      .then(() => history.push('/'))
+      .then(() => history.push('/entries-create'))
       .catch(error => {
         console.error(error)
         this.setState({
@@ -47,54 +50,63 @@ class SignUp extends Component {
     const { firstName, lastName, email, password, passwordConfirmation } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.onSignUp}>
+      <form className='auth-form'>
         <h3>Sign Up</h3>
-        <label htmlFor="firstName">First Name</label>
-        <input
+        <TextField
+          autoFocus
+          fullWidth
           required
-          name="firstName"
-          value={firstName}
           type="text"
-          placeholder="First Name"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          required
           name="lastName"
+          label="Last Name"
           value={lastName}
+          onChange={this.handleChange}
+        />
+        <TextField
+          autoFocus
+          fullWidth
+          required
           type="text"
-          placeholder="Last Name"
+          name="firstName"
+          label="First Name"
+          value={firstName}
           onChange={this.handleChange}
         />
-        <label htmlFor="email">Email</label>
-        <input
+        <TextField
+          autoFocus
+          fullWidth
           required
-          name="email"
-          value={email}
           type="email"
-          placeholder="Email"
+          name="email"
+          label="Email"
+          value={email}
           onChange={this.handleChange}
         />
-        <label htmlFor="password">Password</label>
-        <input
+        <TextField
+          autoFocus
+          fullWidth
           required
+          type="password"
           name="password"
+          label="Password"
           value={password}
-          type="password"
-          placeholder="Password"
           onChange={this.handleChange}
         />
-        <label htmlFor="passwordConfirmation">Confirm Password</label>
-        <input
+        <TextField
+          autoFocus
+          fullWidth
           required
-          name="passwordConfirmation"
-          value={passwordConfirmation}
           type="password"
-          placeholder="Confirm Password"
+          name="passwordConfirmation"
+          label="Password Confirmation"
+          value={passwordConfirmation}
           onChange={this.handleChange}
         />
-        <button type="submit">Sign Up</button>
+        <Button variant="contained" color="primary" onClick={this.onSignUp}>
+          Sign Up
+        </Button>
+        <Button variant="contained"><Link to={'/'}>
+          Back to Sign In</Link></Button>
       </form>
     )
   }
