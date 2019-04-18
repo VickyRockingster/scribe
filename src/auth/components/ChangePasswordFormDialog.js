@@ -34,9 +34,6 @@ export default class ChangePasswordFormDialog extends Component {
 
   handleChangePassword = event => {
     event.preventDefault()
-    console.log(this.state.passwords)
-    console.log(this.props)
-    console.log(this.props.user)
     changePassword(this.state.passwords, this.props.user)
       .then(() => this.setState({ open: false }))
       // .then(() => alert(messages.changePasswordSuccess, 'success'))
@@ -61,9 +58,7 @@ export default class ChangePasswordFormDialog extends Component {
         >
           <DialogTitle id="form-dialog-title">Change Password</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              Content
-            </DialogContentText>
+            <DialogContentText>{this.props.user.email}</DialogContentText>
             <form>
               <TextField
                 autoFocus
