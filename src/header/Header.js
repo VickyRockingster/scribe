@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import ChangePasswordFormDialog from '../auth/components/ChangePasswordFormDialog'
+import Button from '@material-ui/core/Button'
+
 import './Header.scss'
 
-// const authenticatedOptions = (
-//   <Fragment>
-//     <FormDialog/>
-//     <Link to="/sign-out">Sign Out</Link>
-//   </Fragment>
-// )
+const authenticatedOptions = (
+  <Button variant="outlined"><Link to="/sign-out">Sign Out</Link></Button>
+)
 
 const unauthenticatedOptions = (
   <Fragment>
@@ -27,9 +26,9 @@ const Header = ({ user }) => (
   <header className="main-header">
     <h1>Scribe</h1>
     <nav>
-      { user && <span>Welcome, {user.first_name}</span>}
-      { user ? (<ChangePasswordFormDialog user={user} />)
-        : unauthenticatedOptions }
+      { user && <span>Welcome, {user.email}</span>}
+      <span>{ user ? <ChangePasswordFormDialog user={user} /> : '' }</span>
+      <span>{ user ? authenticatedOptions : unauthenticatedOptions }</span>
     </nav>
   </header>
 )
