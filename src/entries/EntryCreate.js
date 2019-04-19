@@ -9,6 +9,8 @@ import { Redirect } from 'react-router'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+import messages from './messages'
+
 class EntryCreate extends Component {
   constructor () {
     super()
@@ -31,14 +33,15 @@ class EntryCreate extends Component {
       data: { entry: this.state.entry }
     })
       .then(res => {
-        console.log(res)
         this.setState({
           created: true,
           entry: res.data.entry
         })
       })
-      .then(() => (console.log(this.state.entry)))
-      .catch(console.log)
+      .catch(error => {
+        console.error(error)
+        this.props.alert(messages.createEntryFailure, 'danger')
+      })
   }
 
   handleChange = (event) => {

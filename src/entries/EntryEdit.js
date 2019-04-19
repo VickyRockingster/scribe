@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import messages from './messages'
 
 // import { Link } from 'react-router-dom'
 
@@ -35,7 +36,10 @@ class EntryEdit extends Component {
       data: { entry: this.state.entry }
     })
       .then(response => this.setState({ entry: response.data.entry }))
-      .catch(console.log)
+      .catch(error => {
+        console.error(error)
+        this.props.alert(messages.getEntryFailure, 'danger')
+      })
   }
 
   handleDelete = () => {
@@ -50,7 +54,10 @@ class EntryEdit extends Component {
       .then(() => this.setState({
         deleted: true
       }))
-      .catch(console.log)
+      .catch(error => {
+        console.error(error)
+        this.props.alert(messages.deleteEntryFailure, 'danger')
+      })
   }
 
   handleSubmit = (event) => {
@@ -69,10 +76,10 @@ class EntryEdit extends Component {
         entry: response.data.entry,
         updated: true
       }))
-      .catch(() => this.setState({
-        entry: { title: '', text: '' },
-        message: 'We could not update this entry. Please try again.'
-      }))
+      .catch(error => {
+        console.error(error)
+        this.props.alert(messages.updateEntryFailure, 'danger')
+      })
   }
 
   handleChange = (event) => {

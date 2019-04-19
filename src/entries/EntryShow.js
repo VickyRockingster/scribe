@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 // import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import messages from './messages'
 
 class EntryShow extends Component {
   constructor () {
@@ -37,7 +38,10 @@ class EntryShow extends Component {
         entry: response.data.entry,
         gotten: true
       }))
-      .catch(console.log)
+      .catch(error => {
+        console.error(error)
+        this.props.alert(messages.getEntryFailure, 'danger')
+      })
   }
 
   handleDelete = () => {
@@ -50,7 +54,10 @@ class EntryShow extends Component {
       }
     })
       .then(() => this.setState({ redirectToCreate: true }))
-      .catch(console.log)
+      .catch(error => {
+        console.error(error)
+        this.props.alert(messages.deleteEntryFailure, 'danger')
+      })
   }
 
   handleEdit = () => {

@@ -31,7 +31,11 @@ class App extends Component {
   clearUser = () => this.setState({ user: null })
 
   alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] })
+    const { alerts } = this.state
+    this.setState({ alerts: [...alerts, { message, type }] })
+    setTimeout(() => {
+      this.setState({ alerts: [] })
+    }, 2000)
   }
 
   render () {
@@ -59,20 +63,17 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/entries-create' render={() => (
             <Fragment>
-              <EntriesIndex user={user} />
-              <EntryCreate user={user} />
+              <EntriesIndex alert={this.alert} user={user} />
+              <EntryCreate alert={this.alert} user={user} />
             </Fragment>
           )} />
           <AuthenticatedRoute user={user} path='/entries/:id/show' render={() => (
-            <Fragment>
-              <EntriesIndex user={user} />
-              <EntryShow user={user} />
-            </Fragment>
+            <EntryShow alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/entries/:id/edit' render={() => (
             <Fragment>
-              <EntriesIndex user={user} />
-              <EntryEdit user={user} />
+              <EntriesIndex alert={this.alert} user={user} />
+              <EntryEdit alert={this.alert} user={user} />
             </Fragment>
           )} />
         </main>

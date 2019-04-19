@@ -16,7 +16,6 @@ class EntriesIndex extends Component {
   }
 
   componentDidMount () {
-    console.log('entries component mounted')
     return axios({
       method: 'GET',
       url: `${apiUrl}/entries`,
@@ -36,9 +35,9 @@ class EntriesIndex extends Component {
 
   render () {
     if (!this.state.entries.length) {
-      return <p>loading...</p>
+      return <p>No entries right now</p>
     }
-    // console.log('entries component rendered')
+
     return (
       <aside id="get-entries" style={{ left: '5px', position: 'fixed', paddingRight: '10px' }}>
         <h4>Entries:</h4>
