@@ -7,7 +7,7 @@ import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
-import ChangePassword from './auth/components/ChangePassword'
+// import ChangePassword from './auth/components/ChangePassword'
 
 import EntriesIndex from './entries/EntriesIndex.js'
 import EntryShow from './entries/EntryShow.js'
@@ -51,14 +51,11 @@ class App extends Component {
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
-          <Route path='/sign-in' render={() => (
+          <Route exact path='/' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/entries-create' render={() => (
             <Fragment>
@@ -84,4 +81,7 @@ class App extends Component {
   }
 }
 
+// <Route exact path='/sign-in' render={() => (
+//   <SignIn alert={this.alert} setUser={this.setUser} />
+// )} />
 export default App
