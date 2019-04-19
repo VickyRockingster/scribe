@@ -6,6 +6,9 @@ import apiUrl from '../apiConfig'
 import { Redirect } from 'react-router'
 // import { Link } from 'react-router-dom'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 class EntryCreate extends Component {
   constructor () {
     super()
@@ -51,15 +54,46 @@ class EntryCreate extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit} id="create-entry">
-        <input name="title" type="text" placeholder="Title" onChange={this.handleChange}
-          id="create-entry-title" required/>
-        <textarea name="text" type="text" placeholder="Text" onChange={this.handleChange}
-          id="create-entry-text" required></textarea>
-        <button type="submit" >Add</button>
+      <form style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+      }}>
+        <TextField
+          autoFocus
+          variant="outlined"
+          type="text"
+          name="title"
+          label="Title"
+          value={this.state.title}
+          onChange={this.handleChange}
+        />
+        <TextField
+          autoFocus
+          multiline={true}
+          rows={10}
+          rowsMax={1000}
+          variant="outlined"
+          type="text"
+          name="text"
+          label="Text"
+          value={this.state.text}
+          onChange={this.handleChange}
+        />
+        <Button variant="contained" onClick={this.handleSubmit} color="primary">
+          Add
+        </Button>
       </form>
     )
   }
+  // <form onSubmit={this.handleSubmit} id="create-entry">
+  // <input name="title" type="text" placeholder="Title" onChange={this.handleChange}
+  // id="create-entry-title" required/>
+  // <textarea name="text" type="text" placeholder="Text" onChange={this.handleChange}
+  // id="create-entry-text" required></textarea>
+  // <button type="submit" >Add</button>
+  // </form>
 }
 // <Link to={this.props.match.url + '/edit'}><button>Edit</button></Link>
 
