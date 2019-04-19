@@ -66,7 +66,6 @@ class EntryCreate extends Component {
           type="text"
           name="title"
           label="Title"
-          value={this.state.title}
           onChange={this.handleChange}
         />
         <TextField
@@ -78,7 +77,6 @@ class EntryCreate extends Component {
           type="text"
           name="text"
           label="Text"
-          value={this.state.text}
           onChange={this.handleChange}
         />
         <Button variant="contained" onClick={this.handleSubmit} color="primary">

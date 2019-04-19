@@ -4,6 +4,8 @@ import apiUrl from '../apiConfig'
 import { Redirect } from 'react-router'
 import { withRouter } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
+// import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 class EntryShow extends Component {
   constructor () {
@@ -17,7 +19,8 @@ class EntryShow extends Component {
       gotten: false,
       message: '',
       deleted: false,
-      redirectToEdit: false
+      redirectToEdit: false,
+      redirectToCreate: false
     }
   }
 
@@ -46,12 +49,16 @@ class EntryShow extends Component {
         'Authorization': `Token token=${this.props.user.token}`
       }
     })
-      .then(() => this.setState({ deleted: true }))
+      .then(() => this.setState({ redirectToCreate: true }))
       .catch(console.log)
   }
 
   handleEdit = () => {
     this.setState({ redirectToEdit: true })
+  }
+
+  handleRedirectToCreate = () => {
+    this.setState({ redirectToCreate: true })
   }
 
   render () {
@@ -64,21 +71,63 @@ class EntryShow extends Component {
       return <Redirect to={{ pathname: `/entries/${id}/edit` }} />
     }
 
-    if (this.state.deleted) {
+    if (this.state.redirectToCreate) {
       return <Redirect to={{ pathname: '/entries-create' }} />
     }
     // const { director, title, year } = this.state.movie
-
     return (
-      <main id="show-entry">
+      <main id="show-entry" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+      }}>
         <h4>{this.state.entry.title}</h4>
         <div>{this.state.entry.text}</div>
-        <button type="button" onClick={this.handleDelete}>Delete</button>
-        <button type="button" onClick={this.handleEdit}>Edit</button>
+        <Button variant="contained" onClick={this.handleRedirectToCreate}
+          color="primary">
+          Create New Entry
+        </Button>
+        <Button variant="contained" onClick={this.handleDelete} color="primary">
+          Delete
+        </Button>
+        <Button variant="contained" onClick={this.handleEdit} color="primary">
+          Edit
+        </Button>
       </main>
     )
   }
 }
+// <button type="button" onClick={this.handleDelete}>Delete</button>
+// <button type="button" onClick={this.handleEdit}>Edit</button>
+// return (<form style={{
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'space-evenly',
+//   alignItems: 'center'
+// }}>
+// <TextField
+// autoFocus
+// variant="filled"
+// type="text"
+// label="Title"
+// value={this.state.entry.title}
+// />
+// <TextField
+// autoFocus
+// multiline={true}
+// rows={10}
+// rowsMax={1000}
+// variant="filled"
+// type="text"
+// label="Text"
+// value={this.state.entry.text}
+// />
+// <Button variant="contained" onClick={this.handleDelete} color="primary">
+// Delete</Button>
+// <Button variant="contained" onClick={this.handleEdit} color="primary">
+// Edit</Button>
+// </form>
 // <Link to={this.props.match.url + '/edit'}><button>Edit</button></Link>
 
 export default withRouter(EntryShow)

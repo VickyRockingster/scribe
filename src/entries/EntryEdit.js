@@ -4,6 +4,9 @@ import apiUrl from '../apiConfig'
 import { Redirect } from 'react-router'
 import { withRouter } from 'react-router-dom'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 // import { Link } from 'react-router-dom'
 
 class EntryEdit extends Component {
@@ -94,17 +97,51 @@ class EntryEdit extends Component {
     // const { director, title, year } = this.state.movie
 
     return (
-      <form onSubmit={this.handleSubmit} id="show-entry">
-        <input name="title" type="text" value={this.state.entry.title} onChange={this.handleChange}
-          id="edit-entry-title" required/>
-        <textarea name="text" type="text" value={this.state.entry.text} onChange={this.handleChange}
-          id="edit-entry-text" required></textarea>
-        <button type="button" onClick={this.handleDelete}>Delete</button>
-        <button type="submit">Edit</button>
+      <form style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+      }}>
+        <TextField
+          autoFocus
+          variant="outlined"
+          type="text"
+          name="title"
+          label="Title"
+          value={this.state.entry.title}
+          onChange={this.handleChange}
+        />
+        <TextField
+          autoFocus
+          multiline={true}
+          rows={10}
+          rowsMax={1000}
+          variant="outlined"
+          type="text"
+          name="text"
+          label="Text"
+          value={this.state.entry.text}
+          onChange={this.handleChange}
+        />
+        <Button variant="contained" color="primary" onClick={this.handleDelete}>
+          Delete
+        </Button>
+        <Button variant="contained" onClick={this.handleSubmit} color="primary">
+          Edit Entry
+        </Button>
       </form>
     )
   }
 }
+// <form onSubmit={this.handleSubmit} id="show-entry">
+// <input name="title" type="text" value={this.state.entry.title} onChange={this.handleChange}
+// id="edit-entry-title" required/>
+// <textarea name="text" type="text" value={this.state.entry.text} onChange={this.handleChange}
+// id="edit-entry-text" required></textarea>
+// <button type="button" onClick={this.handleDelete}>Delete</button>
+// <button type="submit">Edit</button>
+// </form>
 // <button onClick={this.handleDelete}>Delete</button>
 // <button onClick={this.handleEdit}>Edit</button>
 // <Link to={this.props.match.url + '/edit'}><button>Edit</button></Link>

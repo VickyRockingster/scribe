@@ -45,7 +45,7 @@ class EntriesIndex extends Component {
         <ul>
           {this.state.entries.map(entry => (
             <li key ={entry.id} style={{ color: 'brown', textDecoration: 'none' }} >
-              <Link to={`/entries/${entry.id}/edit`}>{entry.title}</Link>
+              <Link to={`/entries/${entry.id}/show`}>{entry.title}</Link>
             </li>
           ))}
         </ul>
