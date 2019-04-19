@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-// import { Redirect } from 'react-router'
 
 // import Spinner from 'react-bootstrap/Spinner'
 import apiUrl from '../apiConfig'
@@ -41,12 +40,12 @@ class EntriesIndex extends Component {
     }
     // console.log('entries component rendered')
     return (
-      <aside id="get-entries">
+      <aside id="get-entries" style={{ left: '5px', position: 'fixed', paddingRight: '10px' }}>
         <h4>Entries:</h4>
         <ul>
           {this.state.entries.map(entry => (
-            <li key ={entry.id}>
-              <Link to={`/entries/${entry.id}/show`}>{entry.title}</Link>
+            <li key ={entry.id} style={{ color: 'brown', textDecoration: 'none' }} >
+              <Link to={`/entries/${entry.id}/edit`}>{entry.title}</Link>
             </li>
           ))}
         </ul>
@@ -54,8 +53,6 @@ class EntriesIndex extends Component {
     )
   }
 }
-// <Redirect to={{ pathname: `/entries/${entry.id}` }} />
-
 // <h5>{this.props.location.state ? this.props.location.state.message : ''}</h5>
 
 export default EntriesIndex
