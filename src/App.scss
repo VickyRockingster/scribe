@@ -3,6 +3,12 @@ $warning: #f1e681;
 $error: #f08181;
 $charcoal: #ccc;
 
+.background {
+  background-image: url('./open-notebook.jpg');
+  height: 100%;
+  width: 100%;
+}
+
 .flash-success,
 .flash-warning,
 .flash-error {

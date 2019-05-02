@@ -43,7 +43,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Header user={user} />
+        <Header user={user} style={{ }}/>
         {alerts.map((alert, index) => (
           <Alert key={index} dismissible variant={alert.type}>
             <Alert.Heading>
@@ -51,7 +51,7 @@ class App extends Component {
             </Alert.Heading>
           </Alert>
         ))}
-        <main className="container">
+        <main className="container background">
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />

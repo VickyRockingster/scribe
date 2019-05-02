@@ -63,6 +63,8 @@ export default class ChangePasswordFormDialog extends Component {
               <TextField
                 autoFocus
                 fullWidth
+                margin='normal'
+                variant="outlined"
                 type="password"
                 name="oldPassword"
                 label="Old Password"
@@ -72,6 +74,8 @@ export default class ChangePasswordFormDialog extends Component {
               <TextField
                 autoFocus
                 fullWidth
+                margin='normal'
+                variant="outlined"
                 type="password"
                 name="newPassword"
                 label="New Password"
@@ -81,10 +85,10 @@ export default class ChangePasswordFormDialog extends Component {
             </form>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} margin='normal' color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleChangePassword} color="primary">
+            <Button onClick={this.handleChangePassword} margin='normal' color="primary">
               Submit
             </Button>
           </DialogActions>
