@@ -4,7 +4,8 @@ import { Link, withRouter } from 'react-router-dom'
 import { signUp, signIn } from '../api'
 import messages from '../messages'
 
-import Button from '@material-ui/core/Button'
+import Fab from '@material-ui/core/Fab'
+// import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
 class SignUp extends Component {
@@ -56,6 +57,8 @@ class SignUp extends Component {
           autoFocus
           fullWidth
           required
+          margin='normal'
+          variant="outlined"
           type="text"
           name="lastName"
           label="Last Name"
@@ -66,6 +69,8 @@ class SignUp extends Component {
           autoFocus
           fullWidth
           required
+          margin='normal'
+          variant="outlined"
           type="text"
           name="firstName"
           label="First Name"
@@ -76,6 +81,8 @@ class SignUp extends Component {
           autoFocus
           fullWidth
           required
+          margin='normal'
+          variant="outlined"
           type="email"
           name="email"
           label="Email"
@@ -86,6 +93,8 @@ class SignUp extends Component {
           autoFocus
           fullWidth
           required
+          margin='normal'
+          variant="outlined"
           type="password"
           name="password"
           label="Password"
@@ -96,20 +105,42 @@ class SignUp extends Component {
           autoFocus
           fullWidth
           required
+          margin='normal'
+          variant="outlined"
           type="password"
           name="passwordConfirmation"
           label="Password Confirmation"
           value={passwordConfirmation}
           onChange={this.handleChange}
         />
-        <Button variant="contained" color="primary" onClick={this.onSignUp}>
+        <div style={{ display: 'flex', flexFlow: 'row, nowrap', justifyContent: 'flex-end' }}>
+          <Fab variant="extended"
+            margin='normal'
+            component='button'
+            onClick={this.onSignIn}
+            size="medium"
+            color="primary">
+            <Link to={'/'}>
+              Back to Sign In
+            </Link>
+          </Fab>
+          <Fab variant="extended"
+            margin='normal'
+            component='button'
+            onClick={this.onSignUp}
+            size="medium"
+            color="primary">
           Sign Up
-        </Button>
-        <Button variant="contained"><Link to={'/'}>
-          Back to Sign In</Link></Button>
+          </Fab>
+        </div>
       </form>
     )
   }
 }
 
+// <Button variant="contained" color="primary" onClick={this.onSignUp}>
+//   Sign Up
+// </Button>
+// <Button variant="contained"><Link to={'/'}>
+//   Back to Sign In</Link></Button>
 export default withRouter(SignUp)
